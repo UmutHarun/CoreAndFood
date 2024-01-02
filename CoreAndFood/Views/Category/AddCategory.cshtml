@@ -1,0 +1,25 @@
+﻿@model CoreAndFood.Models.Category
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Add Category</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div style="margin:2rem">
+            <form asp-action="AddCategory" method="post">
+                <div class="form-group">
+                    <label asp-for="CategoryName">Category Name:</label>
+                    <div style="height:.5rem;"></div>
+                    <input asp-for="CategoryName" class="form-control" style="width:30vw" />
+                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                </div>
+                <div style="height:1rem;"></div>
+                <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
+        </div>
+    </div>
+</body>

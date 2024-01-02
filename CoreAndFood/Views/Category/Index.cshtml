@@ -1,0 +1,36 @@
+﻿@model List<CoreAndFood.Models.Category>
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h2>Category List</h2>
+        <br />
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Details</th>
+            </tr>
+            @foreach(var x in @Model)
+            {
+                <tr>
+                    <td>@x.CategoryId</td>
+                    <td>@x.CategoryName</td>
+                    <td><a href="/Category/DeleteCategory/@x.CategoryId" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/Category/EditCategory/@x.CategoryId" class="btn btn-success">Update</a></td>
+                    <td><a href="#" class="btn btn-info">Details</a></td>
+                </tr>
+            }
+        </table>
+        <a asp-controller="Category" asp-action="AddCategory" class="btn btn-primary">New Category</a>
+    </div>
+</body>

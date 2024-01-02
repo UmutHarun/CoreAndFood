@@ -1,0 +1,53 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model PagedList<CoreAndFood.Models.Food>
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Foods</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h2>Category List</h2>
+        <br />
+
+        @if (Model.Any())
+        {
+            <table class="table table-bordered">
+                <tr>
+                    <th>Id</th>
+                    <th>Food Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Category Name</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                    <th>Details</th>
+                </tr>
+                @foreach (var x in @Model)
+                {
+                    <tr>
+                        <td>@x.FoodId</td>
+                        <td>@x.Name</td>
+                        <td>@x.Price $</td>
+                        <td>@x.Stock</td>
+                        <td>@x.Category.CategoryName</td>
+                        <td><a href="/Food/DeleteFood/@x.FoodId" class="btn btn-danger">Delete</a></td>
+                        <td><a href="/Food/EditFood/@x.FoodId" class="btn btn-success">Update</a></td>
+                        <td><a href="#" class="btn btn-info">Details</a></td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <h1 class="text-center text-muted">List is Empty</h1>   
+        }
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+        <a asp-controller="Food" asp-action="AddFood" class="btn btn-primary">New Food</a>
+    </div>
+</body>
